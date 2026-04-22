@@ -1,0 +1,143 @@
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f5f5f5;--surface:#fff;--surface2:#e8f5f4;--border:#c8dbd9;--text:#0d1b2a;--muted:#5a7472;--green:#00847D;--navy:#1a3d5c;--gold:#c49a1a;--red:#8b1a2a;--gray:#4A5568}
+.shell{max-width:100%;padding:20px 16px 40px;background:var(--bg);font-family:'Geist Mono',monospace;font-size:12px;color:var(--text)}
+.hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--text)}
+.hdr-title{font-family:'Georgia',serif;font-size:32px;font-style:italic;line-height:1}
+.hdr-title span{color:var(--green)}
+.hdr-sub{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-top:3px}
+.hdr-meta{text-align:right;font-size:10px;color:var(--muted)}
+.hdr-count{font-family:'Georgia',serif;font-size:24px;font-style:italic}
+.sec{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);display:flex;align-items:center;gap:8px;margin:18px 0 10px}
+.sec::after{content:'';flex:1;height:1px;background:var(--border)}
+.row{display:grid;gap:10px;margin-bottom:10px}
+.r2{grid-template-columns:1fr 1fr}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px}
+.card-title{font-family:'Georgia',serif;font-size:14px;font-style:italic;margin-bottom:2px}
+.card-desc{font-size:9px;color:var(--muted);margin-bottom:10px}
+.kpi-row{display:grid;gap:8px;margin-bottom:12px}
+.k5{grid-template-columns:repeat(5,1fr)}
+.k3{grid-template-columns:repeat(3,1fr)}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px 8px;position:relative;overflow:hidden}
+.kpi-bar{position:absolute;top:0;left:0;right:0;height:3px;background:var(--kc,var(--green))}
+.kpi-label{font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:4px}
+.kpi-val{font-family:'Georgia',serif;font-size:26px;font-style:italic;line-height:1}
+.kpi-detail{margin-top:2px;font-size:9px;color:var(--muted)}
+.kpi-detail b{color:var(--kc,var(--green))}
+.leg{display:flex;align-items:center;gap:4px;font-size:9px;color:var(--muted)}
+.leg-dot{width:7px;height:7px;border-radius:2px;flex-shrink:0}
+.legends{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.insight{margin-top:8px;background:var(--surface2);border-left:3px solid var(--green);border-radius:0 5px 5px 0;padding:6px 10px;font-size:9.5px;color:var(--text);line-height:1.5}
+.insight.gold{border-left-color:var(--gold)}.insight.gold b{color:var(--gold)}
+.insight.red{border-left-color:var(--red)}.insight.red b{color:var(--red)}
+.insight.navy{border-left-color:var(--navy)}.insight.navy b{color:var(--navy)}
+.insight b{color:var(--green)}
+</style>
+<div class="shell">
+<div class="hdr">
+  <div>
+    <div class="hdr-title">Cambio AI <span>Intelligence</span></div>
+    <div class="hdr-sub">People · Revenue · Sustainability · 2025 → 2026</div>
+  </div>
+  <div class="hdr-meta"><div>As of April 2026</div><div class="hdr-count">53 employees</div></div>
+</div>
+
+<div class="kpi-row k5">
+  <div class="kpi" style="--kc:#00847D"><div class="kpi-bar"></div><div class="kpi-label">Company Growth YoY</div><div class="kpi-val">2.9x</div><div class="kpi-detail">18 → <b>53</b> (Mar 25→26)</div></div>
+  <div class="kpi" style="--kc:#00c4bc"><div class="kpi-bar"></div><div class="kpi-label">Engineering Growth</div><div class="kpi-val">2.7x</div><div class="kpi-detail">7 → <b>19</b> engineers</div></div>
+  <div class="kpi" style="--kc:#c49a1a"><div class="kpi-bar"></div><div class="kpi-label">Partner Strategy</div><div class="kpi-val">4.0x</div><div class="kpi-detail">3 → <b>12</b> members</div></div>
+  <div class="kpi" style="--kc:#1a3d5c"><div class="kpi-bar"></div><div class="kpi-label">Biz Dev Growth</div><div class="kpi-val">6.0x</div><div class="kpi-detail">1 → <b>6</b> members</div></div>
+  <div class="kpi" style="--kc:#5a3a7a"><div class="kpi-bar"></div><div class="kpi-label">Building Science</div><div class="kpi-val">2.0x</div><div class="kpi-detail">3 → <b>6</b> members</div></div>
+</div>
+
+<div class="sec">Year over Year Headcount</div>
+<div class="row r2">
+  <div class="card">
+    <div class="card-title">Headcount by Department</div>
+    <div class="card-desc">Mar 2025 vs Mar 2026</div>
+    <div class="legends">
+      <span class="leg"><span class="leg-dot" style="background:#4A5568"></span>Mar 2025</span>
+      <span class="leg"><span class="leg-dot" style="background:#00847D"></span>Mar 2026</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px"><canvas id="deptChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Growth Multiple by Department</div>
+    <div class="card-desc">Teal = 3x+ · Gray = below 3x · Mint = new team</div>
+    <div style="position:relative;width:100%;height:200px"><canvas id="multChart"></canvas></div>
+  </div>
+</div>
+
+<div class="sec">2026 Month-over-Month Headcount</div>
+<div class="row r2">
+  <div class="card">
+    <div class="card-title">Headcount Growth — 2026</div>
+    <div class="card-desc">Active employees end of month · April projected</div>
+    <div class="legends">
+      <span class="leg"><span class="leg-dot" style="background:#00847D"></span>Actual</span>
+      <span class="leg"><span class="leg-dot" style="background:#1a3d5c"></span>Projected</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px"><canvas id="hcLineChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Monthly Hires vs Departures</div>
+    <div class="card-desc">New joiners and exits per month</div>
+    <div class="legends">
+      <span class="leg"><span class="leg-dot" style="background:#00847D"></span>New hires</span>
+      <span class="leg"><span class="leg-dot" style="background:#8b1a2a"></span>Departures</span>
+    </div>
+    <div style="position:relative;width:100%;height:200px"><canvas id="movChart"></canvas></div>
+    <div class="insight"><b>January biggest hiring month</b> — 9 new joiners. Hiring slowed in Q1.</div>
+  </div>
+</div>
+
+<div class="sec">Revenue Intelligence</div>
+<div class="row r2">
+  <div class="card">
+    <div class="card-title">Revenue per Employee — 2026</div>
+    <div class="card-desc">Monthly ARR ÷ headcount · gold = $129K avg · red = $216K fully loaded target</div>
+    <div class="legends">
+      <span class="leg"><span class="leg-dot" style="background:#00847D"></span>Rev / employee</span>
+      <span class="leg"><span class="leg-dot" style="background:#c49a1a"></span>Avg ($129K)</span>
+      <span class="leg"><span class="leg-dot" style="background:#8b1a2a"></span>Target ($216K)</span>
+    </div>
+    <div style="position:relative;width:100%;height:190px"><canvas id="rphChart"></canvas></div>
+    <div class="insight red"><b>April at $142K — still $74K short of the $216K fully loaded target.</b> Revenue per employee needs to grow 52% to cover all-in costs.</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Revenue vs Headcount</div>
+    <div class="card-desc">ARR ($M) and headcount side by side</div>
+    <div class="legends">
+      <span class="leg"><span class="leg-dot" style="background:#00847D"></span>Revenue ($M)</span>
+      <span class="leg"><span class="leg-dot" style="background:#c49a1a"></span>Headcount</span>
+    </div>
+    <div style="position:relative;width:100%;height:190px"><canvas id="dualChart"></canvas></div>
+    <div class="insight navy"><b>Revenue +17% Jan–Apr</b> vs headcount +4%. Efficiency improving.</div>
+  </div>
+</div>
+
+<div class="sec">Revenue Sustainability · ROI per Headcount</div>
+<div class="kpi-row k3">
+  <div class="kpi" style="--kc:#00847D"><div class="kpi-bar"></div><div class="kpi-label">Avg Revenue / Employee</div><div class="kpi-val">$129K</div><div class="kpi-detail">Jan–Apr 2026 average</div></div>
+  <div class="kpi" style="--kc:#8b1a2a"><div class="kpi-bar"></div><div class="kpi-label">Avg Blended Salary</div><div class="kpi-val">$166K</div><div class="kpi-detail"><b>$37K gap</b> vs revenue/head</div></div>
+  <div class="kpi" style="--kc:#c49a1a"><div class="kpi-bar"></div><div class="kpi-label">Fully Loaded Cost / Head</div><div class="kpi-val">$216K</div><div class="kpi-detail">1.3x · benefits + equity + tools</div></div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+new Chart(document.getElementById('deptChart'),{type:'bar',data:{labels:['Engineering','Partner Strat','Business Dev','Building Sci','Operations','Product Mgmt','Product Design','Executive'],datasets:[{data:[7,3,1,3,0,1,1,2],backgroundColor:'#4A5568',borderRadius:3,barPercentage:0.7},{data:[19,12,6,6,3,2,2,2],backgroundColor:'#00847D',borderRadius:3,barPercentage:0.7}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#5a7472',maxRotation:35}},y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},color:'#5a7472',stepSize:4},border:{display:false}}}}});
+
+new Chart(document.getElementById('multChart'),{type:'bar',data:{labels:['Business Dev','Partner Strat','Engineering','Operations','Building Sci','Product Mgmt','Product Design','Executive'],datasets:[{data:[6.0,4.0,2.7,0.5,2.0,2.0,2.0,1.0],backgroundColor:['#00847D','#00847D','#00847D','#e0f5f4','#4A5568','#4A5568','#4A5568','#4A5568'],borderRadius:3}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const l=['6.0x','4.0x','2.7x','New','2.0x','2.0x','2.0x','1.0x'];return ' '+l[ctx.dataIndex]}}}},scales:{x:{min:0,max:7,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},color:'#5a7472',callback:v=>v+'x'},border:{display:false}},y:{grid:{display:false},ticks:{font:{size:9},color:'#5a7472'}}}}});
+
+new Chart(document.getElementById('hcLineChart'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr'],datasets:[{data:[51,52,53,null],borderColor:'#00847D',backgroundColor:'rgba(0,132,125,0.08)',borderWidth:2.5,pointBackgroundColor:'#00847D',pointRadius:5,fill:true,tension:0.3,spanGaps:false},{data:[null,null,53,53],borderColor:'#1a3d5c',backgroundColor:'rgba(26,61,92,0.05)',borderWidth:2,borderDash:[6,4],pointBackgroundColor:'#1a3d5c',pointRadius:5,fill:true,tension:0.3,spanGaps:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:48,max:58,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},stepSize:1}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+new Chart(document.getElementById('movChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr'],datasets:[{data:[9,3,2,2],backgroundColor:['#00847D','#00847D','#00847D','rgba(0,132,125,0.4)'],borderRadius:4,barPercentage:0.5},{data:[1,2,1,1],backgroundColor:['#8b1a2a','#8b1a2a','#8b1a2a','rgba(139,26,42,0.4)'],borderRadius:4,barPercentage:0.5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:12,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},stepSize:2}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+const rd=[125490,123077,128302,141509];
+const ra=Math.round(rd.reduce((a,b)=>a+b,0)/rd.length);
+new Chart(document.getElementById('rphChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr (proj)'],datasets:[{data:rd,backgroundColor:rd.map(v=>v>=ra?'#00847D':'#c8dbd9'),borderRadius:5,barPercentage:0.55},{type:'line',label:'Avg',data:[ra,ra,ra,ra],borderColor:'#c49a1a',borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false},{type:'line',label:'Target',data:[216000,216000,216000,216000],borderColor:'#8b1a2a',borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{if(c.dataset.label==='Avg')return ' Avg: $'+Math.round(c.raw/1000)+'K';if(c.dataset.label==='Target')return ' Target: $'+Math.round(c.raw/1000)+'K';return ' $'+Math.round(c.raw/1000)+'K/employee'}}}},scales:{y:{min:110000,max:240000,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},callback:v=>'$'+Math.round(v/1000)+'K'}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+
+new Chart(document.getElementById('dualChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr'],datasets:[{data:[6.4,6.4,6.8,7.5],backgroundColor:['#00847D','#00847D','#00847D','rgba(0,132,125,0.45)'],borderRadius:4,barPercentage:0.5,yAxisID:'y'},{data:[51,52,53,53],backgroundColor:['#c49a1a','#c49a1a','#c49a1a','rgba(196,154,26,0.45)'],borderRadius:4,barPercentage:0.5,yAxisID:'y2'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{position:'left',min:0,max:10,grid:{color:'rgba(0,0,0,0.04)'},ticks:{font:{size:9},callback:v=>'$'+v+'M'}},y2:{position:'right',min:0,max:70,grid:{display:false},ticks:{font:{size:9}}},x:{grid:{display:false},ticks:{font:{size:10}}}}}});
+</script>
